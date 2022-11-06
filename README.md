@@ -1,4 +1,4 @@
-# your_wishes_front
+# Тестовый проект для курса
 
 ## Build Setup
 
