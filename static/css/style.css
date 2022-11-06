@@ -1,0 +1,112 @@
+.gradient-button {
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    padding: 20px 30px;
+    margin: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+    background-size: 200% auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    transition: .5s;
+  }
+.gradient-button:hover {
+    background-position: right center;
+  }
+
+.wish {
+  border: 2px solid #0fa2b6;
+  padding: 20px 25px;
+  display: inline-block;
+  width: 320px;
+  height: 500px;
+  margin: 20px;
+}
+
+.main_profile {
+  border: 2px solid #0fa2b6;
+  padding: 20px 25px;
+  width: 100%;
+  height: 400px;
+  margin: 20px;
+ 
+
+}
+.button_edit_profile{
+  background-color: #b6cce9;
+  float: right;
+  margin: 100px;
+  color: #11328d ;
+}
+
+.button_add_wish {
+  background-color: #b6cce9;
+  float: right;
+  margin: -50px;
+  margin-right: 50px;
+  color: #11328d ;
+}
+
+.profile_image{
+  border: 1px solid #7c8181;
+  width: 360px;
+  height: 250px;
+  float: right;
+  padding: 20px 25px;
+  margin: -175px;
+  position: relative;
+  margin-right: 5px;
+
+}
+
+.wish_title {
+  color: #11328d;
+  font-size: 16px;
+
+}
+
+.profile_nickname{
+  font-size: 20px;
+  display: inline-block;
+}
+
+.wish_image {
+  border: 1px solid #7c8181;
+  width: 260px;
+  height: 150px;
+}
+body {
+    margin-bottom: 60px; /* Margin bottom by footer height */
+    line-height: 1.5;
+    background-color: #F7FFFF;
+    color: #333333;
+    margin: 0 auto;
+}
+  
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 0;
+  }
+  
+main > h2 {
+    text-align: center;
+    font-size: 25px;
+  }
+h2 {
+   text-align: left;
+    padding-left: 50px;
+  }
+footer {
+     position: absolute; 
+    bottom: 0; 
+    clear: both;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
