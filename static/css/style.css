@@ -35,11 +35,13 @@
  
 
 }
-.button_edit_profile{
-  background-color: #b6cce9;
+.button-edit-profile{
+  /* background-color: #b6cce9; */
   float: right;
-  margin: 100px;
-  color: #11328d ;
+  margin: 7px;
+  
+
+  /* color: #11328d ; */
 }
 
 .button_add_wish {

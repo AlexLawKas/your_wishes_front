@@ -2,7 +2,7 @@
     <div>
       <h1>Мой профиль</h1>
      <div class="main_profile">
-        <div class="profile_nickname">Никнейм: {{ profile.username}}</div>
+      <div class="profile_nickname">Никнейм: {{ profile.username}}</div>
         <div class="profileh_title">Имя: {{ profile.first_name}}</div>
         <div class="profile_title">Фамилия: {{ profile.last_name}}</div>
         <div class="profile_title">Дата рождения: {{ profile.date_of_birth}}</div>
@@ -13,7 +13,7 @@
         <div class="profile_image"> 
           <img :src=profile.photo alt="Изображение">
         </div>
-        <span><nuxt-link class="btn btn-outline-light button_edit_profile" to="/edit_profile">Редактировать профиль</nuxt-link></span>
+        <span><nuxt-link class="btn mt-2 btn-lg btn-primary" to="/edit_profile">Редактировать профиль</nuxt-link></span>
       
       </div>
 
