@@ -53,11 +53,11 @@
 }
 
 .profile_image{
-  border: 1px solid #7c8181;
+  /* border: 1px solid #7c8181; */
   width: 360px;
   height: 250px;
   float: right;
-  padding: 20px 25px;
+  /* padding: 20px 25px; */
   margin: -175px;
   position: relative;
   margin-right: 5px;
@@ -76,7 +76,7 @@
 }
 
 .wish_image {
-  border: 1px solid #7c8181;
+  /* border: 1px solid #7c8181; */
   width: 260px;
   height: 150px;
 }

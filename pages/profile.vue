@@ -11,7 +11,7 @@
         <div class="profile_title">Email: {{ profile.email}}</div>
         
         <div class="profile_image"> 
-          <img :src=profile.photo alt="Изображение">
+          <img :src=photo alt="Изображение" width="360" height="250">
         </div>
         <span><nuxt-link class="btn mt-2 btn-lg btn-primary" to="/edit_profile">Редактировать профиль</nuxt-link></span>
       
@@ -52,10 +52,22 @@ export default {
  }
     const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
     const wishes = await axios.get(`http://127.0.0.1:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config});
+    for (let i = 0; i < wishes.data.length; i += 1) {
+    const wish = wishes.data[i];
+    wish.image = "http://127.0.0.1:8000" + wish.image
+    console.log(wish.image)
 
+  // toLowerCase() — стандартный метод js,
+  // преобразующий строку в нижний регистр
+  // const normalizedEmail = email.toLowerCase();
+  // Заменяем значение
+  // emails[i] = normalizedEmail;
+}
 
      return {
        profile: data,
+       photo: "http://127.0.0.1:8000" + data.photo,
+
        my_wishes: wishes.data,
        
      }
@@ -63,6 +75,7 @@ export default {
      
      
   },
+  
   data(){
 return {
   q : null,

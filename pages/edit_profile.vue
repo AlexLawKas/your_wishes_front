@@ -7,10 +7,10 @@
           <input id="inputEmail" value="profile.email" class="form-control" v-model="profile.email"> -->
           <br>
           <label for="inputUsername" class="sr-only">Никнейм</label>
-          <input type="text" id="inputUsername"  class="form-control" placeholder="Никнейм" required="" v-model="username">
+          <input type="text" id="inputUsername" ref="username"  class="form-control" placeholder="Никнейм" required="" v-model="username">
           <br>
           <label for="inputLastName" class="sr-only">Фамилия</label>-
-          <input id="inputLastName" value="" class="form-control" placeholder="Фамилия" v-model="last_name">
+          <input id="inputLastName" value="" class="form-control" placeholder="Фамилия"  v-model="last_name">
           <br>
           <label for="inputFirstName" class="sr-only">Имя</label>
           <input id="inputFirstName" value="" class="form-control" placeholder="Имя"  v-model="first_name">
@@ -23,16 +23,23 @@
           <br>
           <label for="inputPhone">Выберите пол</label>
           <select value="" class="form-control" name="Пол" id="inputSelect" placeholder="Пол"   v-model="sex">
-            <option value="Male">Male</option>
-            <option  value="Female">Female</option>
+            <option value="Male">Муж.</option>
+            <option  value="Female">Жен.</option>
           </select>
+          <br>
+          <div class="large-12 medium-12 small-12 cell">
+      <label>Аватар
+        <input type="file" id="photo" class="form-control" ref="photo" v-on:change="handleFileUpload()"/>
+      </label>
+        <!-- <button v-on:click="submitFile()">Загрузить</button> -->
+    </div>
           <!-- <br>
           <label for="inputPassword" class="sr-only">Пароль</label>
           <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Пароль" required="" v-model="password">
           <br>
           <label for="inputPassword" class="sr-only">Поавторите Пароль</label>
           <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Повторите пароль" required="" v-model="password2"> -->
-          <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
+          <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Сохранить изменения</button>
           <a href = "/" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
         </form>
       </div>
@@ -45,15 +52,25 @@ export default {
       async asyncData(ctx) {
         const token = localStorage.getItem('auth._token.local')
         const config = {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
           "Accept": "application/json",
+          
           "Authorization": token
 }
             const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
 
          return {
            profile: data,
+           username: data.username,
+           last_name:data.last_name,
+          first_name:data.first_name,
+          date_of_birth:data.date_of_birth,
+          phone:data.phone,
+          sex:data.sex,
+
          }
+         
          
       },
    
@@ -61,13 +78,14 @@ export default {
     data() 
     {
       return {
-        registration: {
+        profile: {
           email: '',
           username:'',
           last_name:'',
           first_name:'',
           date_of_birth:'',
           phone:'',
+          photo:'',
           sex:'',
           password: '',
           password2: ''
@@ -76,30 +94,57 @@ export default {
     },
     
 methods: {
+  handleFileUpload(){
+        this.photo = this.$refs.photo.files[0]
+        
+
+
+      },
+ 
+
       async userUpdate() {
         try {
-       
-      let response = await this.$axios.put('http://127.0.0.1:8000/api/v1/user_update/', {
-        
-        email:data.email,
-        username: this.username,
-        last_name: this.last_name,
-        first_name: this.first_name,
-        date_of_birth: this.date_of_birth,
-        phone: this.phone,
-        sex: this.sex,
-        password: this.password,
-        password2: this.password2,
+          const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {
       })
-          console.log(response)
-          console.log(response.data.access)
+     
+
+   
+
+       let formData = new FormData();
+       if (this.photo){
+            formData.append('photo', this.photo)};
+        formData.append('email', data.email);
+        formData.append('username', this.username);
+        if (this.last_name){
+            formData.append('last_name', this.last_name)};
+        if (this.first_name){
+            formData.append('first_name', this.first_name)};
+        if (this.date_of_birth){
+            formData.append('date_of_birth', this.date_of_birth)};
+        if (this.phone){
+            formData.append('phone', this.phone)};
+        if (this.sex) {
+             
+            formData.append('sex', this.sex)};
+            await this.$axios.put('http://127.0.0.1:8000/api/v1/user_update/',
+                formData,
+                {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              }
+            )
+     
 
           this.$router.push('/profile')
         } catch (err) {
           console.log(err)
         }
       }
-    }
+    },
+      
+    
+    
   }
 // var username = {{profile.username}};
 // document.getElementById('inputUsername').innerHTML = username;
