@@ -27,7 +27,7 @@
         <div class="wish_price">Цена: {{ wish.price }} руб</div>
 
         <div class="wish_image"> 
-          <img :src=wish.image alt="Изображение"></div>
+          <img :src=wish.image alt="" width="260" height="180"></div>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
       </div>
 
@@ -55,13 +55,7 @@ export default {
     for (let i = 0; i < wishes.data.length; i += 1) {
     const wish = wishes.data[i];
     wish.image = "http://127.0.0.1:8000" + wish.image
-    console.log(wish.image)
 
-  // toLowerCase() — стандартный метод js,
-  // преобразующий строку в нижний регистр
-  // const normalizedEmail = email.toLowerCase();
-  // Заменяем значение
-  // emails[i] = normalizedEmail;
 }
 
      return {
@@ -82,6 +76,8 @@ return {
 }
 },
 methods: {
+
+
 submit(){
   this.$router.push("http://127.0.0.1:8000/api/v1/wish_list?name="+this.q);
 }
