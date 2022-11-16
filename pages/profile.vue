@@ -21,7 +21,7 @@
         <h3>Мои желания</h3>
         <span><nuxt-link class="btn btn-outline-light button_add_wish" to="/create_wish">Добавить желаение</nuxt-link></span>
       <div v-for="wish in my_wishes" :key="wish.id" class="wish">
-        <div class="wish_title">{{ wish.name }}</div>
+        <div class="wish_title"><nuxt-link class="nav-link" :to="`/wish/${wish.id}`">{{ wish.name }}</nuxt-link></div>
         <div class="wish_description">{{ wish.description }}</div>
         
         <div class="wish_price">Цена: {{ wish.price }} руб</div>
@@ -43,6 +43,8 @@ import axios from "axios";
 
 export default {
   async asyncData(ctx) {
+
+  
     
      const token = localStorage.getItem('auth._token.local')
      const config = {
@@ -55,9 +57,7 @@ export default {
     for (let i = 0; i < wishes.data.length; i += 1) {
     const wish = wishes.data[i];
     wish.image = "http://127.0.0.1:8000" + wish.image
-
 }
-
      return {
        profile: data,
        photo: "http://127.0.0.1:8000" + data.photo,
@@ -69,23 +69,29 @@ export default {
      
      
   },
+ 
   
   data(){
 return {
   q : null,
 }
 },
+mounted()  {
+    
+    
+    
+ },
+ 
 methods: {
 
 
 submit(){
   this.$router.push("http://127.0.0.1:8000/api/v1/wish_list?name="+this.q);
 }
-},
- 
+}
 }
 
-
+  
 </script>
 
 <style>

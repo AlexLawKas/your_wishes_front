@@ -8,7 +8,7 @@
       </form>
   
       <div v-for="wish in wish_list" :key="wish.id" class="wish">
-        <div class="wish_title"><nuxt-link class="nav-link" to="/wish">{{ wish.name }}</nuxt-link></div>
+        <div class="wish_title"><nuxt-link class="nav-link" :to="`/wish/${wish.id}`">{{ wish.name }}</nuxt-link></div>
         <div class="wish_description">{{ wish.description }}</div>
         
         <div class="wish_price">Цена: {{ wish.price }} руб</div>

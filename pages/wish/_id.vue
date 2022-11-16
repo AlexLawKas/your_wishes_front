@@ -1,0 +1,76 @@
+<template>
+    <div>
+      <h1>{{ wish.name }}</h1>
+     <div class="main_profile">
+        <div class="wish_author">Автор: {{ wish.created_by }}</div>
+        <div class="wish_description">Описание: {{ wish.description }}</div>
+        <div class="wish_price">Цена: {{ wish.price}} руб</div>
+        <div class="wish_reason">Повод: {{ wish.reason }}</div>
+        <div class="wish_url">Ссылка: {{ wish.url }}</div>
+        <div class="wish_deadline">Выполнить до: {{ wish.deadline}}</div>
+        <div class="wish_created_at">Дата создания: {{ wish.created_at}}</div>
+        <div class="wish_done">{{ wish.done}}</div>
+        
+        <div class="wish_image_in_wish_page"> 
+          <img :src=wish.image alt="Изображение" width="360" height="250">
+        </div>
+        <span><nuxt-link class="btn mt-2 btn-lg btn-primary" :to="`/edit_wish/${wish.id}`">Редактировать желание</nuxt-link></span>
+      
+      </div>
+
+      </div>
+    
+  
+</template>
+  
+  <script>
+  import axios from "axios";
+  
+  export default {
+    async asyncData({params}) {
+      const token = localStorage.getItem('auth._token.local')
+      const config = {
+       'Content-Type': 'application/json',
+       "Accept": "application/json",
+       "Authorization": token
+ }
+      const wish = await axios.get(`http://127.0.0.1:8000/api/v1/wish/${params.id}`,  {withCredentials: false, headers: config});
+      const  profile  = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
+      console.log(profile)
+     
+
+      wish.data.image = "http://127.0.0.1:8000" + wish.data.image
+      if (wish.data.done == false){
+        wish.data.done = 'Желание еще не выполнено'
+      }
+      if (wish.data.done == true){
+        wish.data.done = 'Желание уже выполнено'
+      }
+      if (wish.data.url == null){
+        wish.data.url = '-'
+      }
+      if (wish.data.reason == null){
+        wish.data.reason = '-'
+      }
+      if (wish.data.deadline == null){
+        wish.data.deadline = '-'
+      }
+      wish.data.created_by = profile.data.username
+
+
+      return {
+        wish: wish.data,
+        profile: profile.data,
+      }
+    },
+    data(){
+return {
+  q : null,
+}
+},
+  }
+  </script>
+  
+  <style scoped>
+  
+  </style>
