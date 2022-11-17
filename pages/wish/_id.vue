@@ -14,8 +14,8 @@
         <div class="wish_image_in_wish_page"> 
           <img :src=wish.image alt="Изображение" width="360" height="250">
         </div>
-        <span><nuxt-link class="btn mt-2 btn-lg btn-primary" :to="`/edit_wish/${wish.id}`">Редактировать желание</nuxt-link></span>
-      
+        <span v-if="wish.created_by == profile.username" ><nuxt-link class="btn mt-2 btn-lg btn-primary" :to="`/edit_wish/${wish.id}`">Редактировать желание</nuxt-link></span>
+        
       </div>
 
       </div>
@@ -34,11 +34,13 @@
        "Accept": "application/json",
        "Authorization": token
  }
+ 
       const wish = await axios.get(`http://127.0.0.1:8000/api/v1/wish/${params.id}`,  {withCredentials: false, headers: config});
-      const  profile  = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
-      console.log(profile)
+      
+      const  user_profile  = await axios.get(`http://127.0.0.1:8000/api/v1/user_detail/${wish.data.created_by}`, {withCredentials: false, headers: config});
      
-
+      const  profile  = await axios.get(`http://127.0.0.1:8000/api/v1/profile`, {withCredentials: false, headers: config});
+      
       wish.data.image = "http://127.0.0.1:8000" + wish.data.image
       if (wish.data.done == false){
         wish.data.done = 'Желание еще не выполнено'
@@ -55,12 +57,14 @@
       if (wish.data.deadline == null){
         wish.data.deadline = '-'
       }
-      wish.data.created_by = profile.data.username
-
+      wish.data.created_by = user_profile.data.username
+      console.log(profile.data.username)
+      console.log( wish.data.created_by)
 
       return {
         wish: wish.data,
-        profile: profile.data,
+        user_profile: user_profile.data,
+        profile: profile.data
       }
     },
     data(){
@@ -68,6 +72,7 @@ return {
   q : null,
 }
 },
+
   }
   </script>
   
