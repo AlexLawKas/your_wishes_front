@@ -26,7 +26,6 @@
       <label>Изображение
         <input type="file" id="image" class="form-control" ref="image" v-on:change="handleFileUpload()"/>
       </label>
-        <!-- <button v-on:click="submitFile()">Загрузить</button> -->
         </div>
         <div>Публичное или нет
         <input type="checkbox" id="checkbox" checked v-model="public"/>
@@ -53,7 +52,8 @@ export default {
           price:'',
           public: '',
           reason:'',
-          deadline:''
+          deadline:'',
+          done:''
         },
       }
     },
@@ -95,7 +95,7 @@ methods: {
               }
             )
 
-          this.$router.push('/')
+          this.$router.push('/profile')
         } catch (err) {
           console.log(err)
         }

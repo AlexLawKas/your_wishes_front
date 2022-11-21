@@ -2,10 +2,7 @@
 <template>
     <div>
       <h1>Список желаний</h1>
-      <form class="form-inline my-2 my-lg-0">
-        <input name="q" v-model="q" type="text" class="form-control mr-sm-2" placeholder="Поиск" aria-label="Поиск">
-        <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit" @click.stop.prevent="submit()">Поиск</button>
-      </form>
+   
   
       <div v-for="wish in wish_list" :key="wish.id" class="wish">
         <div class="wish_title"><nuxt-link class="nav-link" :to="`/wish/${wish.id}`">{{ wish.name }}</nuxt-link></div>

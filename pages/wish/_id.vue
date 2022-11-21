@@ -2,7 +2,7 @@
     <div>
       <h1>{{ wish.name }}</h1>
      <div class="main_profile">
-        <div class="wish_author">Автор: {{ wish.created_by }}</div>
+        <div class="wish_author">Автор: <nuxt-link class="nav-link" :to="`/user_detail/${user_profile.id}`">{{ wish.created_by }}</nuxt-link></div>
         <div class="wish_description">Описание: {{ wish.description }}</div>
         <div class="wish_price">Цена: {{ wish.price}} руб</div>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
@@ -59,6 +59,7 @@
       if (wish.data.deadline == null){
         wish.data.deadline = '-'
       }
+      console.log(user_profile.data.id)
       wish.data.created_by = user_profile.data.username
       console.log(profile.data.username)
       console.log( wish.data.created_by)
