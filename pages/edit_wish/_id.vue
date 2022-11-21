@@ -145,12 +145,13 @@ methods: {
         } catch (err) {
           console.log(err)
         }
-      }
-    },
+      },
+
       
     
     
-  }
+  },
+}
 // var username = {{profile.username}};
 // document.getElementById('inputUsername').innerHTML = username;
 

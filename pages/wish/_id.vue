@@ -14,19 +14,21 @@
         <div class="wish_image_in_wish_page"> 
           <img :src=wish.image alt="Изображение" width="360" height="250">
         </div>
-        <span v-if="wish.created_by == profile.username" ><nuxt-link class="btn mt-2 btn-lg btn-primary" :to="`/edit_wish/${wish.id}`">Редактировать желание</nuxt-link></span>
-        
+        <span v-if="wish.created_by == profile.username" ><nuxt-link class="btn mt-2 btn-lg btn-primary" :to="`/edit_wish/${wish.id}`">Редактировать желание</nuxt-link>
+          <button class="btn mt-2 btn-lg btn-primary delete"  @click.prevent="deleteWish">Удалить желание </button>
+        </span>
       </div>
 
       </div>
     
   
 </template>
-  
+<div id="result"></div>
   <script>
   import axios from "axios";
   
-  export default {
+  export default 
+  {
     async asyncData({params}) {
       const token = localStorage.getItem('auth._token.local')
       const config = {
@@ -72,8 +74,27 @@ return {
   q : null,
 }
 },
+methods:{
+deleteWish() {
 
-  }
+   const is_delete = confirm("Вы уверны что хотите удалить желание?");
+   if  (is_delete){
+    const wish_id = document.location.pathname.slice(6)
+        try {
+          this.$axios.delete(`http://127.0.0.1:8000/api/v1/delete_wish/${wish_id}`, {
+      })
+      
+    } catch (err) {
+          console.log(err)
+        }
+    this.$router.push(`/profile`)
+   }
+   else {this.$router.push(`/profile`)}
+
+    },
+
+  },
+}
   </script>
   
   <style scoped>

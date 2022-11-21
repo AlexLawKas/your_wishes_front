@@ -62,7 +62,10 @@
   margin-right: 5px;
 
 }
-
+.delete{
+  color: rgb(232, 241, 243);
+  background-color: #d22222;
+}
 .profile_image{
   /* border: 1px solid #7c8181; */
   width: 360px;
