@@ -41,16 +41,15 @@
 import axios from "axios";
 
 export default {
-  async asyncData({params}) {
+  async asyncData({params, $http }) {
     
     
      const token = localStorage.getItem('auth._token.local')
      const config = {
        'Content-Type': 'application/json',
        "Accept": "application/json",
-       "Authorization": token
- }
- 
+           "Authorization": token}
+
  	
 
  const  user_profile  = await axios.get(`http://127.0.0.1:8000/api/v1/user_detail/${params.id}`, {withCredentials: false, headers: config});

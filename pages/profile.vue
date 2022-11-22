@@ -1,8 +1,9 @@
 <template>
-    <div>
-      <h1>Мой профиль</h1>
+     <div>
+     <h1>Мой профиль</h1>
      <div class="main_profile" >
       <div class="profile_nickname">Никнейм: {{ profile.username}}</div>
+      
         <div class="profileh_title">Имя: {{ profile.first_name}}</div>
         <div class="profile_title">Фамилия: {{ profile.last_name}}</div>
         <div class="profile_title">Дата рождения: {{ profile.date_of_birth}}</div>
@@ -42,40 +43,66 @@
 import axios from "axios";
 
 export default {
-  async asyncData(ctx) {
+      data(){
+    return {
+      my_wishes : [],
+      profile: {}, 
+      photo: ''
+      
+    }
+  },
+      async fetch() {
+         const token = localStorage.getItem('auth._token.local')
+         const config = {
+           'Content-Type': 'application/json',
+           "Accept": "application/json",
+           "Authorization": token}
+
+         this.my_wishes = await fetch(`http://127.0.0.1:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config}).then(res => res.json())
+         this.profile = await fetch(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
+         
+
+      for (let i = 0; i < this.my_wishes.length; i += 1) {
+      const wish = this.my_wishes[i];
+    wish.image = "http://127.0.0.1:8000" + wish.image
+
+    }
+   this.photo= "http://127.0.0.1:8000" + this.profile.photo
+    
+  },
+
+      fetchOnServer: true,
+  // async asyncData(ctx) {
 
   
     
-     const token = localStorage.getItem('auth._token.local')
-     const config = {
-       'Content-Type': 'application/json',
-       "Accept": "application/json",
-       "Authorization": token
- }
-    const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
-    const wishes = await axios.get(`http://127.0.0.1:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config});
-    for (let i = 0; i < wishes.data.length; i += 1) {
-    const wish = wishes.data[i];
-    wish.image = "http://127.0.0.1:8000" + wish.image
-}
-     return {
-        profile: data,
-        photo: "http://127.0.0.1:8000" + data.photo,
+//      const token = localStorage.getItem('auth._token.local')
+//      const config = {
+//        'Content-Type': 'application/json',
+//        "Accept": "application/json",
+//        "Authorization": token
+//  }
+//     const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
+//     const wishes = await axios.get(`http://127.0.0.1:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config});
+//     for (let i = 0; i < wishes.data.length; i += 1) {
+//     const wish = wishes.data[i];
+//     wish.image = "http://127.0.0.1:8000" + wish.image
+// }
+//      return {
+//         profile: data,
+//         photo: "http://127.0.0.1:8000" + data.photo,
 
-       my_wishes: wishes.data,
+//        my_wishes: wishes.data,
        
-     }
+//      }
     
      
      
-  },
+  // },
  
   
-  data(){
-return {
-  q : null,
-}
-},
+  
+
 
  method:{
 
