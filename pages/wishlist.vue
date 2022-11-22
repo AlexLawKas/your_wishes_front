@@ -23,30 +23,32 @@
     <script>
     import axios from "axios";
     export default {
-      async asyncData(ctx) {
-        const token = localStorage.getItem('auth._token.local')
-        const config = {
-          'Content-Type': 'application/json',
-          "Accept": "application/json",
-          "Authorization": token
-}
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/wish_list/`, {withCredentials: false, headers: config});
-
-         return {
-           wish_list: data,
-         }
-         
-      },
       data(){
     return {
-      q : null,
+      wish_list : [],
     }
   },
+      async fetch() {
+         const token = localStorage.getItem('auth._token.local')
+         const config = {
+           'Content-Type': 'application/json',
+           "Accept": "application/json",
+           "Authorization": token}
+
+         this.wish_list = await fetch(`http://127.0.0.1:8000/api/v1/wish_list/`, {withCredentials: false, headers: config}).then(res => res.json())
+
+      //  const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/wish_list/`);
+    
+         
+      },
+      fetchOnServer: true,
+   
   methods: {
     submit(){
       this.$router.push("http://127.0.0.1:8000/api/v1/wish_list?name="+this.q);
     }
   },
+  
      
     }
 

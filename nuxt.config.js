@@ -71,6 +71,7 @@ export default {
   },
   axios: {
     baseURL: 'http://localhost:8000',
+    credentials: true
   },
   build: {
   }

@@ -59,10 +59,9 @@
       if (wish.data.deadline == null){
         wish.data.deadline = '-'
       }
-      console.log(user_profile.data.id)
+
       wish.data.created_by = user_profile.data.username
-      console.log(profile.data.username)
-      console.log( wish.data.created_by)
+
 
       return {
         wish: wish.data,

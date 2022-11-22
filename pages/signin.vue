@@ -15,7 +15,7 @@
   
 <script>
 export default {
-    layout: "post_detail",
+    // layout: "post_detail",
     data() {
       return {
         login: {

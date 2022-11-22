@@ -33,7 +33,7 @@
 
       </div>
     
-  
+
 </template>
 
 
@@ -77,8 +77,7 @@ return {
 }
 },
 
- 
-methods: {
+ method:{
 
 
 submit(){
