@@ -51,12 +51,27 @@
   
 <script>
 import axios from "axios";
-const wish_id = document.location.pathname.slice(6)
+
 export default {
+  data() 
+    {
+      return {
+        wish: {},
+        name:'',
+        description:'',
+        url:'',
+        price:'',
+       public:'',
+       reason:'',
+        done:'',
+       deadline:''
+      }
+    },
 
 
   
-      async asyncData(ctx) {
+      async fetch() {
+        const wish_id = document.location.pathname.slice(6)
 
         const token = localStorage.getItem('auth._token.local')
         const config = {
@@ -66,42 +81,28 @@ export default {
           
           "Authorization": token
 }
-            const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/wish/${wish_id}`, {withCredentials: false, headers: config});
+            this.wish = await fetch(`http://127.0.0.1:8000/api/v1/${wish_id}`, {withCredentials: false, headers: config}).then(res => res.json())
 
-         return {
-           wish: data,
-           name: data.name,
-           description:data.description,
-           url:data.url,
-           price:data.price,
-           public:data.public,
-           reason:data.reason,
-           done:data.done,
-           deadline:data.deadline,
+         
+      
+           this.name= this.wish.name,
+           this.description=this.wish.description,
+           this.url=this.wish.url,
+           this.price=this.wish.price,
+           this.public=this.wish.public,
+           this.reason=this.wish.reason,
+           this.done=this.wish.done,
+           this.deadline=this.wish.deadline
           //  image:data.image,
+},
 
-         }
+fetchOnServer: true,
          
-         
-      },
+      
+ 
    
 
-    data() 
-    {
-      return {
-        wish: {
-          name: '',
-          description: '',
-          image: '',
-          url:'',
-          price:'',
-          public: '',
-          reason:'',
-          deadline:'',
-          done:''
-        },
-      }
-    },
+   
     
 methods: {
   handleFileUpload(){
@@ -114,15 +115,14 @@ methods: {
 
       async wishUpdate() {
         try {
+          const wish_id = document.location.pathname.slice(11)
           const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/wish/${wish_id}`, {
       })
-     
-
      
        let formData = new FormData();
        if (this.image){
             formData.append('image', this.image)};
-        formData.append('name', data.name);
+        formData.append('name', this.name);
         formData.append('description', this.description);
         if (this.last_name){
             formData.append('url', this.url)};
@@ -130,8 +130,8 @@ methods: {
             formData.append('price', this.price)};
         if (this.deadline){
             formData.append('deadline', this.deadline)};
-        if (this.rerason){
-            formData.append('rerason', this.rerason)};
+        if (this.reason){
+            formData.append('reason', this.reason)};
         formData.append('public', this.public)
         formData.append('done', this.done)
             await this.$axios.put(`http://127.0.0.1:8000/api/v1/update_wish/${wish_id}`,
