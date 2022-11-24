@@ -19,7 +19,7 @@
 
   
         <h3>Желания {{ user_profile.username}}</h3>
-      <div v-for="wish in my_wishes" :key="wish.id" class="wish">
+      <div v-for="wish in wishes" :key="wish.id" class="wish">
         <div class="wish_title"><nuxt-link class="nav-link" :to="`/wish/${wish.id}`">{{ wish.name }}</nuxt-link></div>
         <div class="wish_description">{{ wish.description }}</div>
         
@@ -41,41 +41,71 @@
 import axios from "axios";
 
 export default {
-  async asyncData({params, $http }) {
-    
-    
-     const token = localStorage.getItem('auth._token.local')
-     const config = {
-       'Content-Type': 'application/json',
-       "Accept": "application/json",
+  data(){
+    return {
+      user_profile : [],
+      wishes: {}, 
+      photo: ''
+      
+    }
+  },
+      async fetch() {
+        const user_id = document.location.pathname.slice(13)
+         const token = localStorage.getItem('auth._token.local')
+         const config = {
+           'Content-Type': 'application/json',
+           "Accept": "application/json",
            "Authorization": token}
+
+         this.user_profile = await fetch(`http://127.0.0.1:8000/api/v1/user_detail/${user_id}`, {withCredentials: false, headers: config}).then(res => res.json())
+         this.wishes = await fetch(`http://127.0.0.1:8000/api/v1/wish_list?created_by=${user_id}`, {withCredentials: false, headers: config}).then(res => res.json())
+         
+
+    //   for (let i = 0; i < this.wishes.length; i += 1) {
+    //   const wish = this.wishes[i];
+    // // wish.image = "http://127.0.0.1:8000" + wish.image
+
+    // }
+   this.photo= "http://127.0.0.1:8000" + this.user_profile.photo
+    
+  },
+
+      fetchOnServer: true,
+
+//   data(){
+// return {
+//   user_profile:{},
+//   wishes: {}
+// }
+// },
+//   async fetch({params }) {
+    
+    
+//      const token = localStorage.getItem('auth._token.local')
+//      const config = {
+//        'Content-Type': 'application/json',
+//        "Accept": "application/json",
+//            "Authorization": token}
 
  	
 
- const  user_profile  = await axios.get(`http://127.0.0.1:8000/api/v1/user_detail/${params.id}`, {withCredentials: false, headers: config});
+//  this.user_profile  = await fetch(`http://127.0.0.1:8000/api/v1/user_detail/${params.id}`, {withCredentials: false, headers: config}).then(res => res.json())
 
-    const wishes = await axios.get(`http://127.0.0.1:8000/api/v1/wish_list?created_by=${params.id}`, {withCredentials: false, headers: config});
+//     this.wishes = await fetch(`http://127.0.0.1:8000/api/v1/wish_list?created_by=${params.id}`, {withCredentials: false, headers: config}).then(res => res.json())
 
-    if (wishes.data == []){
-        wishes.data = 'Список желаний пуст'
-    }
-     return {
-        user_profile: user_profile.data,
-        photo: "http://127.0.0.1:8000" + user_profile.data.photo,
-       my_wishes: wishes.data,
+//     if (this.wishes == []){
+//       this.wishe = 'Список желаний пуст'
+//     }
+     
        
-     }
-    
+//         this.photo= "http://127.0.0.1:8000" + this.user_profile.photo
+           
      
-     
-  },
+//   },
+//   fetchOnServer: true,
  
   
-  data(){
-return {
-  q : null,
-}
-},
+ 
 
  
 methods: {
