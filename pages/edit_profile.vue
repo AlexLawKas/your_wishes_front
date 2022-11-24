@@ -31,14 +31,8 @@
       <label>Аватар
         <input type="file" id="photo" class="form-control" ref="photo" v-on:change="handleFileUpload()"/>
       </label>
-        <!-- <button v-on:click="submitFile()">Загрузить</button> -->
+      
     </div>
-          <!-- <br>
-          <label for="inputPassword" class="sr-only">Пароль</label>
-          <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Пароль" required="" v-model="password">
-          <br>
-          <label for="inputPassword" class="sr-only">Поавторите Пароль</label>
-          <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Повторите пароль" required="" v-model="password2"> -->
           <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Сохранить изменения</button>
           <a href = "/" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
         </form>
@@ -77,83 +71,29 @@ export default {
            "Authorization": token}
 
          this.profile = await fetch(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
-        //  this.profile = await fetch(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
       
        
-          this.username = this.profile.username
+          this.username = this.profile.username,
           this.last_name = this.profile.last_name,
           this.first_name=this.profile.first_name,
           this.date_of_birth=this.profile.date_of_birth,
           this.phone=this.profile.phone,
           this.sex=this.profile.sex
 
-       
-
-     
   },
 
       fetchOnServer: true,
-//       async asyncData(ctx) {
-//         const token = localStorage.getItem('auth._token.local')
-//         const config = {
-//           // 'Content-Type': 'application/json',
-//           'Content-Type': 'multipart/form-data',
-//           "Accept": "application/json",
-          
-//           "Authorization": token
-// }
-//             const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
-
-//          return {
-//            profile: data,
-//            username: data.username,
-//            last_name:data.last_name,
-//           first_name:data.first_name,
-//           date_of_birth:data.date_of_birth,
-//           phone:data.phone,
-//           sex:data.sex,
-
-//          }
-         
-         
-//       },
-   
-
-//     data() 
-//     {
-//       return {
-//         profile: {
-//           email: '',
-//           username:'',
-//           last_name:'',
-//           first_name:'',
-//           date_of_birth:'',
-//           phone:'',
-//           photo:'',
-//           sex:'',
-//           password: '',
-//           password2: ''
-//         },
-//       }
-//     },
     
 methods: {
   handleFileUpload(){
         this.photo = this.$refs.photo.files[0]
-        
-
-
       },
  
-
       async userUpdate() {
         try {
           const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {
       })
      
-
-   
-
        let formData = new FormData();
        if (this.photo){
             formData.append('photo', this.photo)};
@@ -178,8 +118,7 @@ methods: {
                 }
               }
             )
-     
-
+    
           this.$router.push('/profile')
         } catch (err) {
           console.log(err)

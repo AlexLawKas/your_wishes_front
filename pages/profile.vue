@@ -72,39 +72,9 @@ export default {
   },
 
       fetchOnServer: true,
-  // async asyncData(ctx) {
-
-  
-    
-//      const token = localStorage.getItem('auth._token.local')
-//      const config = {
-//        'Content-Type': 'application/json',
-//        "Accept": "application/json",
-//        "Authorization": token
-//  }
-//     const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config});
-//     const wishes = await axios.get(`http://127.0.0.1:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config});
-//     for (let i = 0; i < wishes.data.length; i += 1) {
-//     const wish = wishes.data[i];
-//     wish.image = "http://127.0.0.1:8000" + wish.image
-// }
-//      return {
-//         profile: data,
-//         photo: "http://127.0.0.1:8000" + data.photo,
-
-//        my_wishes: wishes.data,
-       
-//      }
-    
-     
-     
-  // },
- 
-  
-  
-
 
  method:{
+  
 
 
 submit(){

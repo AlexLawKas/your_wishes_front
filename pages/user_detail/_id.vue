@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Мой профиль</h1>
+      <h1>Профиль пользователя {{ user_profile.username}}</h1>
      <div class="main_profile" >
       <div class="profile_nickname">Никнейм: {{ user_profile.username}}</div>
         <div class="profileh_title">Имя: {{ user_profile.first_name}}</div>
@@ -54,12 +54,8 @@ export default {
 
  const  user_profile  = await axios.get(`http://127.0.0.1:8000/api/v1/user_detail/${params.id}`, {withCredentials: false, headers: config});
 
- const user_id = document.location.pathname.slice(6)
     const wishes = await axios.get(`http://127.0.0.1:8000/api/v1/wish_list?created_by=${params.id}`, {withCredentials: false, headers: config});
-    for (let i = 0; i < wishes.data.length; i += 1) {
-    const wish = wishes.data[i];
-    wish.image = "http://127.0.0.1:8000" + wish.image
-}
+
     if (wishes.data == []){
         wishes.data = 'Список желаний пуст'
     }

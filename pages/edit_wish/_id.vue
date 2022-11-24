@@ -53,6 +53,8 @@
 import axios from "axios";
 const wish_id = document.location.pathname.slice(6)
 export default {
+
+
   
       async asyncData(ctx) {
 
