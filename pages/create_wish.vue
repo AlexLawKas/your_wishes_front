@@ -32,7 +32,7 @@
 <label for="checkbox"></label>
 </div>
           <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Создать</button>
-          <a href = "/" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
+          <a href = "/profile" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
         </form>
       </div>
     </div>

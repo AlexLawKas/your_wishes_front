@@ -43,7 +43,7 @@
           <label for="inputPassword" class="sr-only">Поавторите Пароль</label>
           <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Повторите пароль" required="" v-model="password2"> -->
           <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Сохранить изменения</button>
-          <a href = "/" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
+          <a href = "/profile" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
         </form>
       </div>
     </div>

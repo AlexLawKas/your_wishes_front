@@ -34,7 +34,7 @@
       
     </div>
           <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Сохранить изменения</button>
-          <a href = "/" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
+          <a href = "/profile" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
         </form>
       </div>
     </div>

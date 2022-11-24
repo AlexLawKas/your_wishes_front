@@ -60,54 +60,12 @@ export default {
          this.user_profile = await fetch(`http://127.0.0.1:8000/api/v1/user_detail/${user_id}`, {withCredentials: false, headers: config}).then(res => res.json())
          this.wishes = await fetch(`http://127.0.0.1:8000/api/v1/wish_list?created_by=${user_id}`, {withCredentials: false, headers: config}).then(res => res.json())
          
-
-    //   for (let i = 0; i < this.wishes.length; i += 1) {
-    //   const wish = this.wishes[i];
-    // // wish.image = "http://127.0.0.1:8000" + wish.image
-
-    // }
    this.photo= "http://127.0.0.1:8000" + this.user_profile.photo
     
   },
 
       fetchOnServer: true,
 
-//   data(){
-// return {
-//   user_profile:{},
-//   wishes: {}
-// }
-// },
-//   async fetch({params }) {
-    
-    
-//      const token = localStorage.getItem('auth._token.local')
-//      const config = {
-//        'Content-Type': 'application/json',
-//        "Accept": "application/json",
-//            "Authorization": token}
-
- 	
-
-//  this.user_profile  = await fetch(`http://127.0.0.1:8000/api/v1/user_detail/${params.id}`, {withCredentials: false, headers: config}).then(res => res.json())
-
-//     this.wishes = await fetch(`http://127.0.0.1:8000/api/v1/wish_list?created_by=${params.id}`, {withCredentials: false, headers: config}).then(res => res.json())
-
-//     if (this.wishes == []){
-//       this.wishe = 'Список желаний пуст'
-//     }
-     
-       
-//         this.photo= "http://127.0.0.1:8000" + this.user_profile.photo
-           
-     
-//   },
-//   fetchOnServer: true,
- 
-  
- 
-
- 
 methods: {
 
 
@@ -119,13 +77,10 @@ computed:  {
   loggedIn() {
       return this.$auth.loggedIn
     },
-  
-     
-    
+
   },
 }
-
-  
+ 
 </script>
 
 <style>
