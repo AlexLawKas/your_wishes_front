@@ -7,21 +7,26 @@
           <input id="inputEmail" value="profile.email" class="form-control" v-model="profile.email"> -->
           <br>
           <label for="inputUsername" class="sr-only">Никнейм</label>
-          <input type="text" id="inputUsername" ref="username"  class="form-control" placeholder="Никнейм" required="" v-model="username">
+          <input type="text" id="inputUsername" ref="username"  class="form-control" placeholder="Никнейм"  v-model="username">
+          <p><span id="status_username"></span></p>
           <br>
           <label for="inputLastName" class="sr-only">Фамилия</label>-
           <input id="inputLastName" value="" class="form-control" placeholder="Фамилия"  v-model="last_name">
+          <p><span id="last_name_status"></span></p>
           <br>
           <label for="inputFirstName" class="sr-only">Имя</label>
           <input id="inputFirstName" value="" class="form-control" placeholder="Имя"  v-model="first_name">
+          <p><span id="first_name_status"></span></p>
           <br>
           <label for="inputDate" class="sr-only">Дата рождения</label>
           <input  type="date" value="" id="inputDate" class="form-control" placeholder="Дата рождения" v-model="date_of_birth">
+          <p><span id="date_status"></span></p>
           <br>
           <label for="inputPhone" class="sr-only">Телефон</label>
           <input  type="phone" value="" id="inputPhone" class="form-control" placeholder="Телефон"  v-model="phone">
+          <p><span id="phone_status"></span></p>
           <br>
-          <label for="inputPhone">Выберите пол</label>
+          <label for="inputSelect">Выберите пол</label>
           <select value="" class="form-control" name="Пол" id="inputSelect" placeholder="Пол"   v-model="sex">
             <option value="Male">Муж.</option>
             <option  value="Female">Жен.</option>
@@ -41,6 +46,8 @@
 </template>
   
 <script>
+function isEmpty(str){
+    return (str == null) || (str.length == 0)}
 import axios from "axios";
 export default {
 
@@ -91,6 +98,31 @@ methods: {
  
       async userUpdate() {
         try {
+          const username_status = document.getElementById("status_username");
+      const username = document.getElementById("inputUsername").value;
+      if(isEmpty(username)) {username_status.innerHTML = '<span style="color:red;">' + "Поле Никнейм пустое" + '</span>';
+      return 'Стоп';}
+      if(username.length >50) {username_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
+      return 'Стоп';}
+
+      
+      const first_name_status = document.getElementById("first_name_status");
+      const first_name = document.getElementById("inputFirstName").value;
+      if(first_name.length >49) {first_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
+      return 'Стоп';}
+
+      const last_name_status = document.getElementById("last_name_status");
+      const last_name = document.getElementById("inputLastName").value;
+      if(last_name.length >50) {last_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
+      return 'Стоп';}
+      const phone_status = document.getElementById("phone_status");
+      const phone = document.getElementById("inputLastName").value;
+      if((phone.length >12) || ((phone.length >= 1) && (phone.length < 9))) {phone_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 12 символов ии не менее 9 символов" + '</span>';
+      return 'Стоп';}
+      const date_status = document.getElementById("date_status");
+      const date = document.getElementById("inputDate").value;
+      if(new Date(date) > new Date()) {date_status.innerHTML = '<span style="color:red;">' + "Дата не может быть в будущем" + '</span>';
+      return 'Стоп';}
           const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {
       })
      
