@@ -28,7 +28,7 @@
  v-model="phone">
           <p><span id="phone_status"></span></p>
           <br>
-          <label for="inputPhone">Выберите пол</label>
+          <label for="inputSelect">Выберите пол</label>
           <select class="form-control" name="Пол" id="inputSelect" placeholder="Пол"   v-model="sex">
             <option value="Male">Male</option>
             <option  value="Female">Female</option>
@@ -79,10 +79,11 @@ methods: {
        return '';
         }
       const  re = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
-      if (!re.test(email)){email_status.innerHTML = '<span style="color:red;">' + "Вы ввели некоректный Email" + '</span>';
+      if (!re.test(email)){email_status.innerHTML = '<span style="color:red;">' + "Вы ввели некорректный Email" + '</span>';
       return 'Стоп';}
       if(email.length >60) {email_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 60 символов" + '</span>';
       return 'Стоп';}
+      else{ email_status.innerHTML = '' }
        
       const username_status = document.getElementById("status_username");
       const username = document.getElementById("inputUsername").value;
@@ -90,35 +91,42 @@ methods: {
       return 'Стоп';}
       if(username.length >50) {username_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      else{ username_status.innerHTML = '' }
 
       const password_status = document.getElementById("status_password");
       const password = document.getElementById("inputPassword").value;
       if(isEmpty(password)) {password_status.innerHTML = '<span style="color:red;">' + "Поле Пароль пустое" + '</span>';
       return 'Стоп';}
+      else{ password_status.innerHTML = '' }
 
       const repeat_password_status = document.getElementById("status_repeat_password");
       const repeat_password = document.getElementById("inputRepeatPassword").value;
       if(isEmpty(repeat_password)) {repeat_password_status.innerHTML = '<span style="color:red;">' + "Поле Повторить пароль пустое" + '</span>';
       return 'Стоп';}
+      else{ repeat_password_status.innerHTML = '' }
       if (password != repeat_password)  {repeat_password_status.innerHTML = '<span style="color:red;">' + "Пароли не совпадают" + '</span>';
       return 'Стоп';}
       const first_name_status = document.getElementById("first_name_status");
       const first_name = document.getElementById("inputFirstName").value;
       if(first_name.length >49) {first_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      else{ first_name_status.innerHTML = '' }
 
       const last_name_status = document.getElementById("last_name_status");
       const last_name = document.getElementById("inputLastName").value;
       if(last_name.length >50) {last_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      else{ last_name_status.innerHTML = '' }
       const phone_status = document.getElementById("phone_status");
-      const phone = document.getElementById("inputLastName").value;
+      const phone = document.getElementById("inputPhone").value;
       if((phone.length >12) || ((phone.length >= 1) && (phone.length < 9))) {phone_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 12 символов ии не менее 9 символов" + '</span>';
       return 'Стоп';}
+      else{ phone_status.innerHTML = '' }
       const date_status = document.getElementById("date_status");
       const date = document.getElementById("inputDate").value;
       if(new Date(date) > new Date()) {date_status.innerHTML = '<span style="color:red;">' + "Дата не может быть в будущем" + '</span>';
       return 'Стоп';}
+      else{ date_status.innerHTML = '' }
 
             let response = await this.$axios.post('http://127.0.0.1:8000/api/v1/registration/', {
         email: this.email,

@@ -7,22 +7,28 @@
           <input id="inputEmail" value="profile.email" class="form-control" v-model="profile.email"> -->
           <br>
           <label for="inputName" class="sr-only">Название</label>
-          <input type="text" id="inputName" ref="name"  class="form-control" placeholder="Название" required="" v-model="name">
+          <input type="text" id="inputName" ref="name"  class="form-control" placeholder="Название"  v-model="name">
+          <p><span id="status_name"></span></p>
           <br>
           <label for="inputDescription" class="sr-only">Описание</label>-
           <input id="inputDescription" value="" class="form-control" placeholder="Описание"  v-model="description">
+          <p><span id="status_description"></span></p>
           <br>
           <label for="inputUrl" class="sr-only">Ссылка</label>
           <input id="inputUrl" value="" class="form-control" placeholder="Ссылка"  v-model="url">
+          <p><span id="status_url"></span></p>
           <br>
           <label for="inputPrice" class="sr-only">Цена</label>
           <input  type="text" value="" id="inputPrice" class="form-control" placeholder="Цена" v-model="price">
+          <p><span id="status_price"></span></p>
           <br>
-          <label for="inputDate" class="sr-only">Выполнить до:</label>
-          <input  type="date" value="" id="inputDate" class="form-control" placeholder="Выполнить до:" v-model="deadline">
+          <label for="inputDeadline" class="sr-only">Выполнить до:</label>
+          <input  type="date" value="" id="inputDeadline" class="form-control" placeholder="Выполнить до:" v-model="deadline">
+          <p><span id="status_deadline"></span></p>
           <br>
           <label for="inputReason" class="sr-only">Повод</label>
           <input  type="text" value="" id="inputReason" class="form-control" placeholder="Повод"  v-model="reason">
+          <p><span id="status_reason"></span></p>
           <br>
           <div class="large-12 medium-12 small-12 cell">
       <label>Изображение
@@ -36,12 +42,7 @@
         <input type="checkbox" id="checkbox" checked v-model="done"/>
 <label for="checkbox"></label></div>
           
-          <!-- <br>
-          <label for="inputPassword" class="sr-only">Пароль</label>
-          <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Пароль" required="" v-model="password">
-          <br>
-          <label for="inputPassword" class="sr-only">Поавторите Пароль</label>
-          <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Повторите пароль" required="" v-model="password2"> -->
+
           <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Сохранить изменения</button>
           <a href = "/profile" class="btn mt-2 btn-lg btn-primary btn-block">Отмена</a>
         </form>
@@ -50,6 +51,8 @@
 </template>
   
 <script>
+function isEmpty(str){
+    return (str == null) || (str.length == 0)}
 import axios from "axios";
 
 export default {
@@ -115,6 +118,43 @@ methods: {
 
       async wishUpdate() {
         try {
+
+          const status_name = document.getElementById("status_name");
+      const name = document.getElementById("inputName").value;
+      if(isEmpty(name)) {status_name.innerHTML = '<span style="color:red;">' + "Поле Название пустое" + '</span>'
+       return '';
+        } else{ status_name.innerHTML = '' }
+        if(name.length >50) {status_name.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
+      return 'Стоп';}else{ status_name.innerHTML = '' }
+
+      const status_description = document.getElementById("status_description");
+      const description = document.getElementById("inputDescription").value;
+      if(isEmpty(description)) {status_description.innerHTML = '<span style="color:red;">' + "Поле Описание пустое" + '</span>'
+       return '';
+        }else{ status_description.innerHTML = '' }
+        if(description.length >50) {status_description.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 250 символов" + '</span>';
+      return 'Стоп';}else{ status_description.innerHTML = '' }
+      
+      const status_price = document.getElementById("status_price");
+      const price = document.getElementById("inputPrice").value;
+      if(isEmpty(price)) {status_price.innerHTML = '<span style="color:red;">' + "Поле Цена пустое" + '</span>'
+       return '';
+        }else{ status_price.innerHTML = '' }
+        if(price.length >10) {status_price.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 10 символов" + '</span>';
+      return 'Стоп';}else{ status_price.innerHTML = '' }
+      if(price == 0) {status_price.innerHTML = '<span style="color:red;">' + "Цена не может быть равна 0" + '</span>';
+      return 'Стоп';}else{ status_price.innerHTML = '' }
+      if(price<0) {status_price.innerHTML = '<span style="color:red;">' + "Цена не может быть отрицательной" + '</span>';
+      return 'Стоп';}else{ status_price.innerHTML = '' }
+      const status_reason = document.getElementById("status_reason");
+      const reason = document.getElementById("inputReason").value;
+  
+        if(reason.length >50) {status_reason.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
+      return 'Стоп';}else{ status_reason.innerHTML = '' }
+      const status_deadline = document.getElementById("status_deadline");
+      const deadline = document.getElementById("inputDeadline").value;
+      if(new Date(deadline) < new Date()) {status_deadline.innerHTML = '<span style="color:red;">' + "Срок выполнения не может быть в прошолом" + '</span>';
+      return 'Стоп';}else{ status_deadline.innerHTML = '' }
           const wish_id = document.location.pathname.slice(11)
           const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/wish/${wish_id}`, {
       })

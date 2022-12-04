@@ -78,51 +78,7 @@
   },
 
       fetchOnServer: true,
-//     async asyncData({params}) {
-//       const token = localStorage.getItem('auth._token.local')
-//       const config = {
-//        'Content-Type': 'application/json',
-//        "Accept": "application/json",
-//        "Authorization": token
-//  }
- 
-//       const wish = await axios.get(`http://127.0.0.1:8000/api/v1/wish/${params.id}`,  {withCredentials: false, headers: config});
-      
-//       const  user_profile  = await axios.get(`http://127.0.0.1:8000/api/v1/user_detail/${wish.data.created_by}`, {withCredentials: false, headers: config});
-     
-//       const  profile  = await axios.get(`http://127.0.0.1:8000/api/v1/profile`, {withCredentials: false, headers: config});
-      
-//       wish.data.image = "http://127.0.0.1:8000" + wish.data.image
-//       if (wish.data.done == false){
-//         wish.data.done = 'Желание еще не выполнено'
-//       }
-//       if (wish.data.done == true){
-//         wish.data.done = 'Желание уже выполнено'
-//       }
-//       if (wish.data.url == null){
-//         wish.data.url = '-'
-//       }
-//       if (wish.data.reason == null){
-//         wish.data.reason = '-'
-//       }
-//       if (wish.data.deadline == null){
-//         wish.data.deadline = '-'
-//       }
 
-//       wish.data.created_by = user_profile.data.username
-
-
-//       return {
-//         wish: wish.data,
-//         user_profile: user_profile.data,
-//         profile: profile.data
-//       }
-//     },
-//     data(){
-// return {
-//   q : null,
-// }
-// },
 methods:{
 deleteWish() {
 

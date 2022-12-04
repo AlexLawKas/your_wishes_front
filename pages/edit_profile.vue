@@ -104,25 +104,33 @@ methods: {
       return 'Стоп';}
       if(username.length >50) {username_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      else{ username_status.innerHTML = '' }
 
       
       const first_name_status = document.getElementById("first_name_status");
       const first_name = document.getElementById("inputFirstName").value;
       if(first_name.length >49) {first_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      else{ first_name_status.innerHTML = '' }
 
       const last_name_status = document.getElementById("last_name_status");
       const last_name = document.getElementById("inputLastName").value;
       if(last_name.length >50) {last_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      else{ last_name_status.innerHTML = '' }
+
       const phone_status = document.getElementById("phone_status");
-      const phone = document.getElementById("inputLastName").value;
-      if((phone.length >12) || ((phone.length >= 1) && (phone.length < 9))) {phone_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 12 символов ии не менее 9 символов" + '</span>';
+      const phone = document.getElementById("inputPhone").value;
+      console.log('Длина телефона',phone.length)
+      if((phone.length >12) || ((phone.length >= 1) && (phone.length < 9))) {phone_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 12 символов и не менее 9 символов" + '</span>';
       return 'Стоп';}
+      else{ phone_status.innerHTML = '' }   
+
       const date_status = document.getElementById("date_status");
       const date = document.getElementById("inputDate").value;
       if(new Date(date) > new Date()) {date_status.innerHTML = '<span style="color:red;">' + "Дата не может быть в будущем" + '</span>';
       return 'Стоп';}
+      else{ date_status.innerHTML = '' } 
           const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {
       })
      
