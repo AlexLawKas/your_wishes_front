@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="item">
       <h1>{{ wish.name }}</h1>
      <div class="main_profile">
         <div class="wish_author">Автор: <nuxt-link class="nav-link" :to="`/user_detail/${user_profile.id}`">{{ wish.created_by }}</nuxt-link></div>
