@@ -12,7 +12,7 @@
         <div class="profile_title">Email: {{ profile.email}}</div>
         
         <div class="profile_image"> 
-          <img :src=photo alt="Изображение" width="360" height="250">
+          <img :src=photo alt="Изображение" width="250" height="300">
         </div>
         <span><nuxt-link class="btn mt-2 btn-lg btn-primary" to="/edit_profile">Редактировать профиль</nuxt-link></span>
       
