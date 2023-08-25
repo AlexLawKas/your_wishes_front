@@ -162,6 +162,7 @@ methods: {
           this.$router.push('/profile')
         } catch (err) {
           console.log(err)
+          if (err.toString().includes('status code 500')) { this.$router.push('/500')};
         }
       }
     },

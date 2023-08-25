@@ -138,7 +138,7 @@ methods: {
             formData.append('reason', this.reason)};
 
         try {
-            await this.$axios.post('http://127.0.0.1:8000/api/v1/wish/',
+          let response = await this.$axios.post('http://127.0.0.1:8000/api/v1/wish/',
                 formData,
                 {
                 headers: {
@@ -146,9 +146,12 @@ methods: {
                 }
               }
             )
+            
 
           this.$router.push('/profile')
         } catch (err) {
+          console.log(err)
+          if (err.toString().includes('status code 500')) { this.$router.push('/500')};
           console.log(err)
         }
       }

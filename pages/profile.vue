@@ -12,7 +12,7 @@
         <div class="profile_title">Email: {{ profile.email}}</div>
         
         <div class="profile_image"> 
-          <img :src=photo alt="Изображение" width="360" height="250">
+          <img :src=photo alt="Изображение" width="250" height="300">
         </div>
         <span><nuxt-link class="btn mt-2 btn-lg btn-primary" to="/edit_profile">Редактировать профиль</nuxt-link></span>
       
@@ -26,15 +26,14 @@
         <div class="wish_description">{{ wish.description }}</div>
         
         <div class="wish_price">Цена: {{ wish.price }} руб</div>
-
+        <br/>
         <div class="wish_image"> 
-          <img :src=wish.image alt="" width="260" height="180"></div>
+          <img :src=wish.image alt="" width="230" height="180"></div>
+        <br/>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
       </div>
 
       </div>
-    
-
 </template>
 
 
@@ -45,6 +44,8 @@ import axios from "axios";
 export default {
       data(){
     return {
+      profile_status:NaN,
+      wishes_status:NaN,
       my_wishes : [],
       profile: {}, 
       photo: ''
@@ -52,14 +53,21 @@ export default {
     }
   },
       async fetch() {
+        try{
+       
          const token = localStorage.getItem('auth._token.local')
          const config = {
            'Content-Type': 'application/json',
            "Accept": "application/json",
            "Authorization": token}
 
-         this.my_wishes = await fetch(`http://127.0.0.1:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config}).then(res => res.json())
-         this.profile = await fetch(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
+         this.my_wishes = await fetch(`http://127.0.0.1:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.wishes_status = res.status))
+         if (this.wishes_status == 401){ <div class="wish_price">Произошла ошибка</div>};
+         if (this.wishes_status == 500){ <h2>произошла ошибка</h2>};
+         this.profile = await fetch(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.profile_status = res.status))
+
+         if (this.profile_status == 401){ this.$router.push('/')};
+         if (this.profile_status == 500){ this.$router.push('/500')};
          
 
       for (let i = 0; i < this.my_wishes.length; i += 1) {
@@ -69,7 +77,10 @@ export default {
     }
    this.photo= "http://127.0.0.1:8000" + this.profile.photo
     
-  },
+  }catch (err) {
+          console.log(err)
+          if (err.toString().includes('status code 500')) { this.$router.push('/500')};
+        }},
 
       fetchOnServer: true,
 
@@ -90,6 +101,7 @@ computed:  {
     
   },
 }
+
 
   
 </script>

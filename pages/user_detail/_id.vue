@@ -43,6 +43,7 @@ import axios from "axios";
 export default {
   data(){
     return {
+      users_status: NaN,
       user_profile : [],
       wishes: {}, 
       photo: ''
@@ -57,7 +58,11 @@ export default {
            "Accept": "application/json",
            "Authorization": token}
 
-         this.user_profile = await fetch(`http://127.0.0.1:8000/api/v1/user_detail/${user_id}`, {withCredentials: false, headers: config}).then(res => res.json())
+         this.user_profile = await fetch(`http://127.0.0.1:8000/api/v1/user_detail/${user_id}`, {withCredentials: false, headers: config}).then(res => res.json().then(this.users_status = res.status))
+         if (this.users_status == 404){ this.$router.push('/404')};
+         if (this.users_status == 401){ this.$router.push('/')};
+         if (this.users_status == 500){ this.$router.push('/500')};
+         if (this.users_status == 403){ this.$router.push('/403')};
          this.wishes = await fetch(`http://127.0.0.1:8000/api/v1/wish_list?created_by=${user_id}`, {withCredentials: false, headers: config}).then(res => res.json())
          
    this.photo= "http://127.0.0.1:8000" + this.user_profile.photo

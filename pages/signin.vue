@@ -29,10 +29,10 @@ methods: {
         try {
           let response = await this.$auth.loginWith('local', { data: this.login })
           console.log(response)
-          console.log(response.data.access)
 
           this.$router.push('/')
         } catch (err) {
+          if (err.toString().includes('status code 500')) { this.$router.push('/500')};
           console.log(err)
         }
       }

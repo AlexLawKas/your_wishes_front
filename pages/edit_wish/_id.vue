@@ -185,6 +185,7 @@ methods: {
      
           this.$router.push(`/wish/${wish_id}`)
         } catch (err) {
+          if (err.toString().includes('status code 500')) { this.$router.push('/500')};
           console.log(err)
         }
       },

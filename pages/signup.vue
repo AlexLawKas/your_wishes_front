@@ -141,11 +141,15 @@ methods: {
       })
       console.log(response)
           console.log(response.data.access)  
+          console.log(response.status)
+          if ('status code 500' in err){this.$router.push('/500.html')}
+
 
           this.$router.push('/signin')
           
         } catch (err) {
           console.log(err)
+          if (err.toString().includes('status code 500')) { this.$router.push('/500')};
         }
       },
      
