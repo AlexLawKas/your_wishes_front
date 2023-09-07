@@ -20,6 +20,9 @@
         <li v-if="loggedIn" class="nav-item ">
           <nuxt-link class="nav-link" to="/wishlist">Желания</nuxt-link>
         </li>
+        <li v-if="loggedIn" class="nav-item ">
+          <nuxt-link class="nav-link" to="/userlist">Пользователи</nuxt-link>
+        </li>
       </ul>
       <!-- <form class="form-inline my-2 my-lg-0">
         <input name="q" v-model="q" type="text" class="form-control mr-sm-2" placeholder="Поиск" aria-label="Поиск">

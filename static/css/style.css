@@ -34,6 +34,15 @@
   height: 500px;
   margin: 20px;
 }
+.user {
+  border: 1px solid #e2f6f8;
+  box-shadow: 10px 5px 5px rgb(158, 157, 157);
+  padding: 20px 25px;
+  display: inline-block;
+  width: 330px;
+  height: 500px;
+  margin: 20px;
+}
 
 .main_profile {
   border: 2px solid #daf1f5;
