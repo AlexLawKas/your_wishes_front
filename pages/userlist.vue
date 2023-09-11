@@ -12,6 +12,7 @@
          <th>Имя</th>
          <th>Дата рождения</th>
          <th>Пол</th>
+         <th>Последняя активность</th>
         </tr>
        
         <tbody>
@@ -22,6 +23,7 @@
             <td class="profile_title">  {{ user.last_name}}  </td>
             <td class="profile_title">  {{ user.date_of_birth}}  </td>
             <td class="profile_title">  {{ user.sex}}  </td>
+            <td class="profile_title">  {{ user.lats_active}}  </td>
           </tr>
         </tbody>
      
@@ -67,8 +69,6 @@
          for (let i = 0; i < this.user_list.length; i += 1) {
       const user = this.user_list[i];
       
-         
-          console.log('FFFFFFFF', user)
           if (user.sex == 'Male'){
             user.sex = 'Муж.'
           }

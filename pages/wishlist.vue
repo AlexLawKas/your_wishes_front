@@ -17,6 +17,7 @@
           <img :src=wish.image alt="" width="260" height="180"></div>
           <br>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
+        <div class="wish_reason"> {{ deadline_of }}</div>
       </div>
     </div>
       
@@ -31,6 +32,7 @@
       wish_list_status: NaN,
       wish_list : [],
       search: '',
+      deadline_of: ''
     }
   },
       async fetch() {
@@ -46,6 +48,13 @@
          if (this.wish_list == []){
 
          }
+         for (let i = 0; i < this.wish_list.length; i += 1) {
+      const wish = this.wish_list[i];
+      
+          if (wish.deadline_of){
+            deadline_of = 'Дедлай для выполнения желания уже прошел'
+          }
+        }
 
       //  const { data } = await axios.get(`http://127.0.0.1:8000/api/v1/wish_list/`);
     
@@ -61,7 +70,7 @@
   methods: {
     searchWishes(){
       const { data } = this.$axios.get(`http://127.0.0.1:8000/api/v1/wish_list?name=`+this.q)
-     // this.$router.push("http://127.0.0.1:8000/api/v1/wish_list?name="+this.q);
+
     }
   },
   
