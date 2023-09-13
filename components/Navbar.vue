@@ -52,7 +52,7 @@ export default {
       this.$router.push("/search?q="+this.q);
     },
     openProfile(){
-      this.$router.push("/http://127.0.0.1:8000/api/v1/profile/");
+      this.$router.push("/http://localhost.charlesproxy.com:8000/api/v1/profile/");
     }
   },
   computed: {
