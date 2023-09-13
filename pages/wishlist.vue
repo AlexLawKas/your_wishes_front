@@ -17,7 +17,9 @@
           <img :src=wish.image alt="" width="260" height="180"></div>
           <br>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
-        <div class="wish_reason"> {{ deadline_of }}</div>
+        <br>
+        <br>
+        <div class="wish_reason" style="color: red;"> {{ wish.deadline_of }}</div>
       </div>
     </div>
       
@@ -51,8 +53,8 @@
          for (let i = 0; i < this.wish_list.length; i += 1) {
       const wish = this.wish_list[i];
       
-          if (wish.deadline_of){
-            deadline_of = 'Дедлай для выполнения желания уже прошел'
+          if (wish.deadline_of == true){
+            wish.deadline_of = 'Дедлай для выполнения желания уже прошел'
           }
         }
 
