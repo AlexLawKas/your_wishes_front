@@ -77,7 +77,7 @@ export default {
            "Accept": "application/json",
            "Authorization": token}
 
-         this.profile = await fetch(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
+         this.profile = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
       
        
           this.username = this.profile.username,
@@ -131,7 +131,7 @@ methods: {
       if(new Date(date) > new Date()) {date_status.innerHTML = '<span style="color:red;">' + "Дата не может быть в будущем" + '</span>';
       return 'Стоп';}
       else{ date_status.innerHTML = '' } 
-          const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/profile/`, {
+          const { data } = await this.$axios.get(`http://localhost.charlesproxy.com:8000/api/v1/profile/`, {
       })
      
        let formData = new FormData();
@@ -150,7 +150,7 @@ methods: {
         if (this.sex) {
              
             formData.append('sex', this.sex)};
-            await this.$axios.put('http://127.0.0.1:8000/api/v1/user_update/',
+            await this.$axios.put('http://localhost.charlesproxy.com:8000/api/v1/user_update/',
                 formData,
                 {
                 headers: {

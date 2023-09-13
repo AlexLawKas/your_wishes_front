@@ -46,16 +46,16 @@
            "Accept": "application/json",
            "Authorization": token}
           
-         this.wish = await fetch(`http://127.0.0.1:8000/api/v1/wish/${wish_id}`,  {withCredentials: false, headers: config}).then(res => res.json().then(this.wish_status = res.status))
+         this.wish = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/wish/${wish_id}`,  {withCredentials: false, headers: config}).then(res => res.json().then(this.wish_status = res.status))
          
          if (this.wish_status == 404){ this.$router.push('/404')};
          if (this.wish_status == 401){ this.$router.push('/')};
          if (this.wish_status == 500){ this.$router.push('/500')};
          if (this.wish_status == 403){ this.$router.push('/403')};
-         this.user_profile = await fetch(`http://127.0.0.1:8000/api/v1/user_detail/${this.wish.created_by}`, {withCredentials: false, headers: config}).then(res => res.json())
-         this.profile = await fetch(`http://127.0.0.1:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
+         this.user_profile = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/user_detail/${this.wish.created_by}`, {withCredentials: false, headers: config}).then(res => res.json())
+         this.profile = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json())
 
-         this.wish.image = "http://127.0.0.1:8000" + this.wish.image
+         this.wish.image = "http://localhost.charlesproxy.com:8000" + this.wish.image
          this.name = this.wish.name,
     this.description = this.wish.description,
     this.url=this.wish.url,
@@ -92,7 +92,7 @@ deleteWish() {
    if  (is_delete){
     const wish_id = document.location.pathname.slice(6)
         try {
-          this.$axios.delete(`http://127.0.0.1:8000/api/v1/delete_wish/${wish_id}`, {
+          this.$axios.delete(`http://localhost.charlesproxy.com:8000/api/v1/delete_wish/${wish_id}`, {
       })
       
     } catch (err) {

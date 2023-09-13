@@ -156,7 +156,7 @@ methods: {
       if(new Date(deadline) < new Date()) {status_deadline.innerHTML = '<span style="color:red;">' + "Срок выполнения не может быть в прошолом" + '</span>';
       return 'Стоп';}else{ status_deadline.innerHTML = '' }
           const wish_id = document.location.pathname.slice(11)
-          const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/v1/wish/${wish_id}`, {
+          const { data } = await this.$axios.get(`http://localhost.charlesproxy.com:8000/api/v1/wish/${wish_id}`, {
       })
      
        let formData = new FormData();
@@ -174,7 +174,7 @@ methods: {
             formData.append('reason', this.reason)};
         formData.append('public', this.public)
         formData.append('done', this.done)
-            await this.$axios.put(`http://127.0.0.1:8000/api/v1/update_wish/${wish_id}`,
+            await this.$axios.put(`http://localhost.charlesproxy.com:8000/api/v1/update_wish/${wish_id}`,
                 formData,
                 {
                 headers: {

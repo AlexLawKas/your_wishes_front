@@ -60,7 +60,7 @@
            "Accept": "application/json",
            "Authorization": token}
 
-         this.user_list = await fetch(`http://127.0.0.1:8000/api/v1/user_list/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.user_list_status = res.status))
+         this.user_list = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/user_list/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.user_list_status = res.status))
          if (this.user_list_status == 401){ this.$router.push('/')};
          if (this.user_list_status == 500){ this.$router.push('/500')};
          if (this.user_list.length == 0){

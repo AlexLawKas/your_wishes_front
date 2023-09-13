@@ -128,7 +128,7 @@ methods: {
       return 'Стоп';}
       else{ date_status.innerHTML = '' }
 
-            let response = await this.$axios.post('http://127.0.0.1:8000/api/v1/registration/', {
+            let response = await this.$axios.post('http://localhost.charlesproxy.com:8000/api/v1/registration/', {
         email: this.email,
         username: this.username,
         last_name: this.last_name,

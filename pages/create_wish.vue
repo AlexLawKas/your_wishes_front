@@ -138,7 +138,7 @@ methods: {
             formData.append('reason', this.reason)};
 
         try {
-          let response = await this.$axios.post('http://127.0.0.1:8000/api/v1/wish/',
+          let response = await this.$axios.post('http://localhost.charlesproxy.com:8000/api/v1/wish/',
                 formData,
                 {
                 headers: {

@@ -71,7 +71,7 @@ export default {
     }
   },
   axios: {
-    baseURL: 'http://localhost:8000'
+    baseURL: 'http://localhost.charlesproxy.com:8000'
   },
   build: {
   }
