@@ -7,7 +7,7 @@
         <input v-model="search" class="form-control" placeholder="Поиск по названию">
 
         <br>
-      <div v-for="wish in wishesByName" :key="wish.id" class="wish">
+      <div v-for="wish in wishesByName" v-if="wish_list!=0" :key="wish.id" class="wish">
         <div class="wish_title"><nuxt-link class="nav-link" :to="`/wish/${wish.id}`">{{ wish.name }}</nuxt-link></div>
         <div class="wish_description">{{ wish.description }}</div>
         
