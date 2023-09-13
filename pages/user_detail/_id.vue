@@ -19,6 +19,8 @@
 
   
         <h3>Желания {{ user_profile.username}}</h3>
+   
+
       <div v-for="wish in wishes" :key="wish.id" class="wish">
         <div class="wish_title"><nuxt-link class="nav-link" :to="`/wish/${wish.id}`">{{ wish.name }}</nuxt-link></div>
         <div class="wish_description">{{ wish.description }}</div>
@@ -29,7 +31,14 @@
           <img :src=wish.image alt="" width="260" height="180"></div>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
       </div>
-
+  
+    
+        <div v-if="wishes==0">
+          <br>
+          <p class="no_content">Пользователь {{ user_profile.username}} еще не добавил ни одного желания</p>
+          
+          </div> 
+      
       </div>
     
   
@@ -45,7 +54,7 @@ export default {
     return {
       users_status: NaN,
       user_profile : [],
-      wishes: {}, 
+     
       photo: ''
       
     }
@@ -64,7 +73,9 @@ export default {
          if (this.users_status == 500){ this.$router.push('/500')};
          if (this.users_status == 403){ this.$router.push('/403')};
          this.wishes = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/wish_list?created_by=${user_id}`, {withCredentials: false, headers: config}).then(res => res.json())
-         
+         if (this.wishes.length == 0) {
+          this.wishes = 0
+         }
    this.photo= "http://localhost.charlesproxy.com:8000" + this.user_profile.photo
     
   },

@@ -32,6 +32,11 @@
         <br/>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
       </div>
+      <div v-if="my_wishes==0">
+        <br>
+        <p class="no_content">Я еще не добавил ни одного желания</p>
+        
+        </div> 
 
       </div>
 </template>
@@ -64,6 +69,9 @@ export default {
          this.my_wishes = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/my_wishes/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.wishes_status = res.status))
          if (this.wishes_status == 401){ <div class="wish_price">Произошла ошибка</div>};
          if (this.wishes_status == 500){ <h2>произошла ошибка</h2>};
+         if (this.my_wishes.length == 0) {
+          this.my_wishes = 0
+         };
          this.profile = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.profile_status = res.status))
 
          if (this.profile_status == 401){ this.$router.push('/')};

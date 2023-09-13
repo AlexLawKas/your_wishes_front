@@ -34,6 +34,13 @@
   height: 500px;
   margin: 20px;
 }
+.no_content {
+   text-align: center;
+    padding-left: 50px;
+    font-size: 35px;
+    color: #666;
+    padding: 20px 30px
+}
 .user {
   border: 1px solid #e2f6f8;
   box-shadow: 10px 5px 5px rgb(158, 157, 157);
