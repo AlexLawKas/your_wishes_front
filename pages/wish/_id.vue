@@ -9,6 +9,8 @@
         <div class="wish_url">Ссылка: {{ wish.url }}</div>
         <div class="wish_deadline">Выполнить до: {{ wish.deadline}}</div>
         <div class="wish_created_at">Дата создания: {{ wish.created_at}}</div>
+        <br>
+        <br>
         <div class="wish_done">{{ wish.done}}</div>
         
         <div class="wish_image_in_wish_page"> 
