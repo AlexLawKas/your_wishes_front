@@ -23,7 +23,7 @@
             <td class="profile_title">  {{ user.last_name}}  </td>
             <td class="profile_title">  {{ user.date_of_birth}}  </td>
             <td class="profile_title">  {{ user.sex}}  </td>
-            <td class="profile_title">  {{ user.lats_active}}  </td>
+            <td class="profile_title">  {{ user.last_active}}  </td>
           </tr>
         </tbody>
      
