@@ -51,6 +51,7 @@
 
          this.wish_list = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/wish_list/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.wish_list_status = res.status))
          if (this.wish_list_status == 401){ this.$router.push('/')};
+         if (this.wish_list_status == 403){ this.$router.push('/403')};
          if (this.wish_list_status == 500){ this.$router.push('/500')};
          if (this.wish_list.length == 0) {
           this.wish_list = 0
