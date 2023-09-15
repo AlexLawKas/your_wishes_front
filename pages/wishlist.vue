@@ -14,7 +14,7 @@
         <div class="wish_price">Цена: {{ wish.price }} руб</div>
 
         <div class="wish_image"> 
-          <img :src=wish.image alt="" width="260" height="180"></div>
+          <img :src=wish.image alt="" width="200" height="120"></div>
           <br>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
         <br>
