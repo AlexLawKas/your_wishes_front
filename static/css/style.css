@@ -121,6 +121,11 @@
   height: 120px;
 }
 
+
+.form-signin {
+  margin-top: 20%;
+
+}
 #dialogoverlay {
   display: none;
   opacity: .8;
