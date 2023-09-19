@@ -121,9 +121,17 @@
   height: 120px;
 }
 
-
+.text-center{
+  overflow-y: hidden;
+  overflow: hidden;
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+}
 .form-signin {
-  margin-top: 20%;
+
+  margin-top: 15%;
+
 
 }
 #dialogoverlay {
