@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="text-center">
-        <form class="form-signin" @submit.prevent="wishUpdate">
+        <form class="form-wish" @submit.prevent="wishUpdate">
           <h1 class="h3 mb-3 mt-3 font-weight-normal">Редактировать желание</h1>
           <!-- <label for="inputEmail" class="sr-only">Email</label>
           <input id="inputEmail" value="profile.email" class="form-control" v-model="profile.email"> -->

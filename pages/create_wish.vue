@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="text-center">
-        <form class="form-signin" @submit.prevent="createWish">
+        <form class="form-wish" @submit.prevent="createWish">
           <h1 class="h3 mb-3 mt-3 font-weight-normal">Создать желание</h1>
           <br>
           <label for="inputName" class="sr-only">Название</label>

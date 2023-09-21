@@ -91,6 +91,8 @@ methods: {
       return 'Стоп';}
       if(username.length >50) {username_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      if(username.length < 2) {username_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не менее 2 символов" + '</span>';
+      return 'Стоп';}
       else{ username_status.innerHTML = '' }
 
       const password_status = document.getElementById("status_password");
