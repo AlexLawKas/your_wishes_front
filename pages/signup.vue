@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="text-center">
-        <form class="form-signin" @submit.prevent="userRegistration">
+        <form class="form-signup" @submit.prevent="userRegistration">
           <h1 class="h3 mb-3 mt-3 font-weight-normal">Регистрация</h1>
           <label for="inputEmail" class="sr-only">Email</label>
           <input id="inputEmail" class="form-control" placeholder="Email"  v-model="email">
