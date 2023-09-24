@@ -14,6 +14,8 @@
         <div class="profile_image"> 
           <img :src=photo alt="Изображение" width="250" height="300">
         </div>
+        <br>
+        <br>
         <span><nuxt-link class="btn mt-2 btn-lg btn-primary" to="/edit_profile">Редактировать профиль</nuxt-link></span>
       
       </div>
