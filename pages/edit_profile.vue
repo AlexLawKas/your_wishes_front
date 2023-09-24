@@ -121,7 +121,6 @@ methods: {
 
       const phone_status = document.getElementById("phone_status");
       const phone = document.getElementById("inputPhone").value;
-      console.log('Длина телефона',phone.length)
       if((phone.length >12) || ((phone.length >= 1) && (phone.length < 9))) {phone_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 12 символов и не менее 9 символов" + '</span>';
       return 'Стоп';}
       else{ phone_status.innerHTML = '' }   
