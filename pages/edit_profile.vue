@@ -36,6 +36,13 @@
       <label>Аватар
         <input type="file" id="photo" class="form-control" ref="photo" v-on:change="handleFileUpload()"/>
       </label>
+      <br>
+      <label for="inputPassword" class="sr-only">Изменить пароль</label>
+      <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Изменить пароль"  v-model="password">
+      <p><span id="status_password"></span></p>
+      <label for="inputRepeatPassword" class="sr-only">Поавторите Пароль</label>
+      <input type="password" id="inputRepeatPassword" class="form-control mt-2" placeholder="Повторите пароль"  v-model="password2">
+      <p><span id="status_repeat_password"></span></p>
       
     </div>
           <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Сохранить изменения</button>
@@ -64,7 +71,9 @@ export default {
          first_name:'',
          date_of_birth:'',
          phone:'',
-         sex:''
+         sex:'',
+         password: '',
+         password2: ''
  
       
     
@@ -104,12 +113,16 @@ methods: {
       return 'Стоп';}
       if(username.length >50) {username_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
       return 'Стоп';}
+      if(username.length < 2) {username_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не менее 2 символов" + '</span>';
+      return 'Стоп';}
       else{ username_status.innerHTML = '' }
 
       
       const first_name_status = document.getElementById("first_name_status");
       const first_name = document.getElementById("inputFirstName").value;
       if(first_name.length >49) {first_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не более 50 символов" + '</span>';
+      return 'Стоп';}
+      if(first_name.length < 2) {first_name_status.innerHTML = '<span style="color:red;">' + "Длина поля должна быть не менее 2 символов" + '</span>';
       return 'Стоп';}
       else{ first_name_status.innerHTML = '' }
 
@@ -130,6 +143,12 @@ methods: {
       if(new Date(date) > new Date()) {date_status.innerHTML = '<span style="color:red;">' + "Дата не может быть в будущем" + '</span>';
       return 'Стоп';}
       else{ date_status.innerHTML = '' } 
+      const password = document.getElementById("inputPassword").value;
+      const repeat_password_status = document.getElementById("status_repeat_password");
+      const repeat_password = document.getElementById("inputRepeatPassword").value;
+    
+      if (password != repeat_password)  {repeat_password_status.innerHTML = '<span style="color:red;">' + "Пароли не совпадают" + '</span>';
+      return 'Стоп';}
           const { data } = await this.$axios.get(`http://localhost.charlesproxy.com:8000/api/v1/profile/`, {
       })
      
