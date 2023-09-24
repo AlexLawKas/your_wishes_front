@@ -30,8 +30,8 @@
           <br>
           <label for="inputSelect">Выберите пол</label>
           <select class="form-control" name="Пол" id="inputSelect" placeholder="Пол"   v-model="sex">
-            <option value="Male">Male</option>
-            <option  value="Female">Female</option>
+            <option value="Male">Мужской</option>
+            <option  value="Female">Женский</option>
           </select>
           <br>
           <label for="inputPassword" class="sr-only">Пароль</label>
@@ -133,6 +133,8 @@ methods: {
       if(new Date(date) > new Date()) {date_status.innerHTML = '<span style="color:red;">' + "Дата не может быть в будущем" + '</span>';
       return 'Стоп';}
       else{ date_status.innerHTML = '' }
+      if (this.sex == 'Мужской'){this.sex = 'Male'}
+      if (this.sex == 'Женский'){this.sex = 'Female'}
 
             let response = await this.$axios.post('http://localhost.charlesproxy.com:8000/api/v1/registration/', {
         email: this.email,
