@@ -4,11 +4,12 @@
         <form class="form-signin" @submit.prevent="userLogin" style='overflow-y:hidden;'>
           <h1 class="h3 mb-3 mt-3 font-weight-normal">Пожалуйста укажите Email и пароль</h1>
           <label for="inputEmail" class="sr-only">Email пользователя</label>
-          <input id="inputEmail" class="form-control" placeholder="Email пользователя" required="" v-model="login.email">
+          <input id="inputEmail" class="form-control" placeholder="Email пользователя"  v-model="login.email">
           <p><span id="status_email"></span></p>
           <br>
           <label for="inputPassword" class="sr-only">Пароль</label>
-          <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Пароль" required="" v-model="login.password">
+          <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Пароль"  v-model="login.password">
+          <p><span id="status_password"></span></p>
           <br>
           <p><span id="status_auth"></span></p>
           <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Войти</button>
@@ -37,6 +38,11 @@ methods: {
       const email_status = document.getElementById("status_email");
       const email = document.getElementById("inputEmail").value;
       if(isEmpty(email)) {email_status.innerHTML = '<span style="color:red;">' + "Поле Email пустое" + '</span>'
+       return '';
+        }
+      const password_status = document.getElementById("status_password");
+      const password = document.getElementById("inputPassword").value;
+      if(isEmpty(password)) {password_status.innerHTML = '<span style="color:red;">' + "Поле Пароль пустое" + '</span>'
        return '';
         }
           let response = await this.$auth.loginWith('local', { data: this.login })
