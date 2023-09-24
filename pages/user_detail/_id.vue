@@ -68,6 +68,8 @@ export default {
            "Authorization": token}
 
          this.user_profile = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/user_detail/${user_id}`, {withCredentials: false, headers: config}).then(res => res.json().then(this.users_status = res.status))
+         if (this.user_profile.sex == 'Male'){this.user_profile.sex = 'Мужской'}
+      if (this.user_profile.sex == 'Female'){this.user_profile.sex = 'Женский'}
          if (this.users_status == 404){ this.$router.push('/404')};
          if (this.users_status == 401){ this.$router.push('/')};
          if (this.users_status == 500){ this.$router.push('/500')};

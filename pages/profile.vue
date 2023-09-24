@@ -30,7 +30,7 @@
         <div class="wish_price">Цена: {{ wish.price }} руб</div>
         <br/>
         <div class="wish_image"> 
-          <img :src=wish.image alt="" width="200" height="120"></div>
+          <img :src=wish.image alt="Фото" width="200" height="120"></div>
         <br/>
         <div class="wish_reason">Повод: {{ wish.reason }}</div>
       </div>
@@ -75,6 +75,8 @@ export default {
           this.my_wishes = 0
          };
          this.profile = await fetch(`http://localhost.charlesproxy.com:8000/api/v1/profile/`, {withCredentials: false, headers: config}).then(res => res.json().then(this.profile_status = res.status))
+         if (this.profile.sex == 'Male'){this.profile.sex = 'Мужской'}
+      if (this.profile.sex == 'Female'){this.profile.sex = 'Женский'}
 
          if (this.profile_status == 401){ this.$router.push('/')};
          if (this.profile_status == 500){ this.$router.push('/500')};
