@@ -147,12 +147,6 @@ methods: {
         password: this.password,
         password2: this.password2,
       })
-      console.log(response)
-          console.log(response.data.access)  
-          console.log(response.status)
-          if ('status code 500' in err){this.$router.push('/500.html')}
-
-
           this.$router.push('/signin')
           
         } catch (err) {
