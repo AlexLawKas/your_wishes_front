@@ -9,6 +9,7 @@
         <div class="wish_url">Ссылка: {{ wish.url }}</div>
         <div class="wish_deadline">Выполнить до: {{ wish.deadline}}</div>
         <div class="wish_created_at">Дата создания: {{ wish.created_at}}</div>
+        <div class="wish_done">Приватность: {{ wish.public}}</div>
         <br>
         <br>
         <div class="wish_done">{{ wish.done}}</div>
@@ -82,6 +83,10 @@
       if (this.wish.deadline == null){
         this.wish.deadline = '-'
       }
+      if (this.wish.public == false){
+        this.wish.public = 'Приватное'}
+        if (this.wish.public == true){
+        this.wish.public = 'Публичное'}
 
   },
 
