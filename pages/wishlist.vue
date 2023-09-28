@@ -60,7 +60,7 @@
       const wish = this.wish_list[i];
       
           if (wish.deadline_of == true){
-            wish.deadline_of = 'Дедлай для выполнения желания уже прошел'
+            wish.deadline_of = 'Срок для выполнения желания уже прошел'
           }
         }
 
